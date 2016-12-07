@@ -143,6 +143,7 @@ class LineBot
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $this->response_header);
 		$result = curl_exec($ch);
 		curl_close($ch);
+		error_log($ch, 3, '../logs/result.log');
 		return $result;
 	}
 }
