@@ -19,9 +19,9 @@ class LineBot
 
 		$event = $this->getEvent();
 		// replytokenの取得
-		$reply_token = $event->{"replyToken"};
+		$this->reply_token = $event->{"replyToken"};
 		// ユーザーから送られてきた本文を取得
-		$user_text = $event->{"message"}->{"text"};
+		$this->user_text = $event->{"message"}->{"text"};
 	}
 
 	// ユーザーから送られてきた情報を取得
@@ -36,13 +36,13 @@ class LineBot
 	{
 		$response_text = "";
 		if ($format) {
-			$response_text = sprintf($format, $user_text);
+			$response_text = sprintf($format, $this->user_text);
 		} else {
-			$response_text = $user_text;
+			$response_text = $this->user_text;
 		}
 
 		$post = [
-			"replyToken" => $reply_token,
+			"replyToken" => $this->reply_token,
 			"messages" => array(
 				array(
 					"type" => "text",
